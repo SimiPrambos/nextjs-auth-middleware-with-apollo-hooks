@@ -29,9 +29,9 @@ function PrivatePage(props) {
 
 // example using middleware
 PrivatePage.middlewares = [
-	(_ctx, next) => {
+	async (_ctx, next) => {
     console.log('Logger ...')
-    next()
+    await next()
 	},
 	isAuthenticated
 ]

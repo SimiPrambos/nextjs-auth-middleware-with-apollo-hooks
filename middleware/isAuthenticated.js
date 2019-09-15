@@ -1,9 +1,9 @@
 import redirect from '../lib/redirect'
 import { gql } from 'apollo-boost'
 
-export default (context, next) => {
-	context.apolloClient.query({
-		query: gql`
+export default async (ctx, next) => {
+  ctx.apolloClient.query({
+    query: gql`
 			{
 				me {
 					id
@@ -13,11 +13,11 @@ export default (context, next) => {
 				}
 			}
 		`
-	})
-		.then(() => {
-			next()
-		})
-		.catch(() => {
-			redirect('/login')
-		})
+  })
+    .then(() => {
+      next()
+    })
+    .catch(() => {
+      redirect(ctx, '/login')
+    })
 }
